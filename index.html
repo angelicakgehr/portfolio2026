@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelica Gehr — Content & Production Operations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #16151C;
+      --bg-alt:    #1E1C28;
+      --border:    #2C2A3A;
+      --text:      #F2F1F6;
+      --muted:     #E8E4DE;
+      --subtle:    #C8C4BC;
+      --accent:    #D4C87A;
+      --font:      'Josefin Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 200;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── UTILITIES ── */
+    .label {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-pad { padding: 56px 48px; }
+    .border-b    { border-bottom: 0.5px solid var(--border); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .site-name {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav ul a {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); }
+    nav ul a.accent {
+      color: var(--accent);
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 80px 48px 64px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    #hero .headline {
+      font-size: 48px;
+      font-weight: 100;
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin: 20px 0 28px;
+      max-width: 780px;
+    }
+
+    #hero .subheadline {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 2;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 12px 28px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 28px;
+      border: 0.5px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ── SHOWS BANNER ── */
+    #shows {
+      padding: 36px 0;
+      border-bottom: 0.5px solid var(--border);
+      overflow: hidden;
+    }
+
+    #shows .shows-header {
+      padding: 0 48px;
+      margin-bottom: 20px;
+    }
+
+    #shows .tagline {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 55s linear infinite;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .show-tile {
+      width: 220px;
+      height: 220px;
+      border-radius: 10px;
+      background: var(--bg-alt);
+      border: 0.5px solid var(--border);
+      margin-right: 80px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .show-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── NUMBERS ── */
+    #numbers {
+      background: var(--bg-alt);
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    #numbers .intro {
+      font-size: 14px;
+      font-weight: 100;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 14px 0 56px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 32px;
+      margin-top: 36px;
+    }
+
+    .stat-num {
+      font-size: 46px;
+      font-weight: 100;
+      color: var(--text);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    #numbers .supporting {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 0.5px solid var(--border);
+      font-size: 13px;
+      font-weight: 200;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    /* ── HOW I WORK ── */
+    #how {
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .how-items { margin-top: 36px; }
+
+    .how-item {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .how-item:first-child { border-top: none; padding-top: 0; }
+
+    .how-num {
+      font-size: 13px;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      min-width: 24px;
+      padding-top: 3px;
+    }
+
+    .how-title {
+      font-size: 17px;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .how-body {
+      font-size: 14px;
+      font-weight: 200;
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    /* ── SELECTED WORK ── */
+    #work {
+      background: var(--bg-alt);
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .work-list { margin-top: 32px; }
+
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 22px 0;
+      border-top: 0.5px solid var(--border);
+      gap: 24px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .work-item:hover { opacity: 0.7; }
+
+    .work-title {
+      font-size: 17px;
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .work-meta {
+      font-size: 12px;
+      font-weight: 100;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    .work-arrow {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    /* ── WORK DETAIL SECTIONS ── */
+    .work-detail {
+      padding: 48px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .work-detail:nth-child(even) { background: var(--bg-alt); }
+
+    .work-detail h3 {
+      font-size: 20px;
+      font-weight: 200;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin: 16px 0 6px;
+    }
+
+    .work-detail .company {
+      font-size: 12px;
+      font-weight: 100;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 24px;
+    }
+
+    .work-detail p {
+      font-size: 14px;
+      font-weight: 200;
+      line-height: 1.9;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 680px;
+    }
+
+    .work-detail .sub-label {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 24px 0 12px;
+    }
+
+    .work-detail ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 680px;
+    }
+
+    .work-detail ul li {
+      font-size: 14px;
+      font-weight: 200;
+      line-height: 1.8;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .work-detail ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 200;
+    }
+
+    .result-stat {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    #skills {
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .skills-col-label {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 28px 0 12px;
+    }
+
+    .skills-col-label:first-of-type { margin-top: 20px; }
+
+    .skills-list {
+      font-size: 14px;
+      font-weight: 200;
+      letter-spacing: 0.04em;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 48px;
+      margin-top: 8px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--bg-alt);
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    #about p {
+      font-size: 15px;
+      font-weight: 200;
+      line-height: 2;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+
+    #about p em {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    #about .open-to {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 0.5px solid var(--border);
+      font-size: 13px;
+      font-weight: 200;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    #about .open-to span {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      padding: 56px 48px;
+      border-bottom: 0.5px solid var(--border);
+      text-align: center;
+    }
+
+    .testimonial-carousel {
+      margin-top: 40px;
+      position: relative;
+      text-align: center;
+    }
+
+    .testimonial-slide {
+      display: none;
+    }
+
+    .testimonial-slide.active {
+      display: block;
+    }
+
+    .testimonial-quote {
+      font-size: 22px;
+      font-weight: 100;
+      font-style: italic;
+      line-height: 1.55;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .testimonial-attr {
+      font-size: 12px;
+      font-weight: 200;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .testimonial-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 32px;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+    }
+
+    .dot.active { background: var(--accent); }
+
+    .testimonial-nav {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .t-btn {
+      background: none;
+      border: 0.5px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font);
+      font-size: 9px;
+      font-weight: 200;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .t-btn:hover { color: var(--text); border-color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg-alt);
+      padding: 64px 48px;
+      border-bottom: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    #contact .contact-left {}
+
+    #contact .contact-label {
+      margin-bottom: 16px;
+    }
+
+    #contact .email {
+      font-size: 24px;
+      font-weight: 100;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    #contact .email:hover { color: var(--accent); }
+
+    #contact .linkedin {
+      font-size: 9px;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--accent);
+      padding-bottom: 2px;
+    }
+
+    #contact .availability {
+      font-size: 9px;
+      font-weight: 200;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      line-height: 2.2;
+      text-align: right;
+    }
+
+    #contact .availability span {
+      display: block;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 8px;
+      font-weight: 200;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--subtle);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav ul { gap: 20px; }
+      .section-pad, #hero, #numbers, #how, #work, #skills, #about, #testimonials { padding-left: 24px; padding-right: 24px; }
+      #hero .headline { font-size: 32px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+      .stat-num { font-size: 34px; }
+      #contact { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      #contact .availability { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .work-detail { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="site-name">Content & Production Operations</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="accent">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <h2 style="font-size: 110px; font-weight: 100; letter-spacing: 0.06em; color: var(--accent); line-height: 1; margin-bottom: 16px;">Angelica Gehr</h2>
+    <h1 class="headline">Operations leader who builds the systems that let creative teams scale.</h1>
+    <p class="subheadline">I've spent 7+ years building media and content operations from the ground up — across a 5-person media team with a16z crypto, a 4-person editorial team with a16z main that scaled to 9, and a 2-person team at Meta. Every role was net-new when I arrived: at a16z crypto, a16z, Meta, and Big Toe Audio, the position didn't exist before I came in. I design them, build them, and run them — across podcast production, video, events, and multi-format content programs. If your team needs someone who can build the infrastructure, run the program, and make sure nothing falls through the cracks — that's where I come in.</p>
+    <div class="btn-row">
+      <a href="#work" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- SHOWS BANNER -->
+  <section id="shows" class="border-b">
+    <div class="shows-header">
+      <div class="label">Shows I've Worked On</div>
+    </div>
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <div class="show-tile"><img src="a16zcrypto-podcast-1.jpg" alt="web3 with a16z crypto" /></div>
+      <div class="show-tile"><img src="a16z-Show-Podcast.jpg" alt="The a16z Podcast" /></div>
+      <div class="show-tile"><img src="Future_a16zpodart.webp" alt="a16z Future" /></div>
+      <div class="show-tile"><img src="raising-health-show-1024x1024.jpg" alt="Raising Health" /></div>
+      <div class="show-tile"><img src="16mins_a16zpodart.jpg" alt="16 Minutes" /></div>
+      <div class="show-tile"><img src="a16z-live-show.png" alt="a16z Live" /></div>
+      <!-- Set 2 — duplicate for seamless loop -->
+      <div class="show-tile"><img src="a16zcrypto-podcast-1.jpg" alt="web3 with a16z crypto" /></div>
+      <div class="show-tile"><img src="a16z-Show-Podcast.jpg" alt="The a16z Podcast" /></div>
+      <div class="show-tile"><img src="Future_a16zpodart.webp" alt="a16z Future" /></div>
+      <div class="show-tile"><img src="raising-health-show-1024x1024.jpg" alt="Raising Health" /></div>
+      <div class="show-tile"><img src="16mins_a16zpodart.jpg" alt="16 Minutes" /></div>
+      <div class="show-tile"><img src="a16z-live-show.png" alt="a16z Live" /></div>
+    </div>
+  </section>
+
+  <!-- BY THE NUMBERS -->
+  <section id="numbers">
+    <div class="label">By The Numbers</div>
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">171%</div>
+        <div class="stat-label">Increase in annual show output (2023–2025)</div>
+      </div>
+      <div>
+        <div class="stat-num">118+</div>
+        <div class="stat-label">web3 with a16z crypto episodes produced</div>
+      </div>
+      <div>
+        <div class="stat-num">165+</div>
+        <div class="stat-label">Produced video clips</div>
+      </div>
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Contractors and vendors managed</div>
+      </div>
+      <div>
+        <div class="stat-num" style="font-size: 36px;">$500K–700K</div>
+        <div class="stat-label">Annual editorial budget managed</div>
+      </div>
+      <div>
+        <div class="stat-num">63%</div>
+        <div class="stat-label">Reduction in internal content review cycles</div>
+      </div>
+    </div>
+    <div class="supporting">Three years. One ops lead. Here's what that looks like.</div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section id="how" class="border-b">
+    <div class="label">How I Work</div>
+    <div class="how-items">
+      <div class="how-item">
+        <div class="how-num">01</div>
+        <div>
+          <div class="how-title">I build systems before they're needed.</div>
+          <div class="how-body">Every workflow I've worked in, I've built or rebuilt from scratch. That includes a full show production pipeline (pitch to scheduling to recording to post-production to publishing to distribution), a video clip tracking system in Airtable managing video assets, a multimedia production tracker covering every step of post-production, and Standard Operating Procedures for four recording formats. In 2025, I also led the process of taking The web3 with a16z crypto Show from audio-only to video-native — setting up equipment kits for physical studios, establishing remote recording processes, and proposing improvements to show leadership based on the latest available platforms and technology. I document everything so the team can operate without me in the room, and so the systems survive beyond any one person.</div>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <div>
+          <div class="how-title">I run complex programs across formats and teams.</div>
+          <div class="how-body">I've simultaneously managed long-form video podcasts, short-form social clips, founder interview series, research lecture series, and remote/hybrid event recordings, all in parallel, all with different timelines, stakeholders, and contractors. I'm the person teams call when there are too many moving pieces and not enough structure. When a host went on leave, the show kept shipping. When a major summit happened over 2 days, I ran 22 recordings while simultaneously managing post-production on a separate episode to on-time publication.</div>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <div>
+          <div class="how-title">I make contractors and cross-functional teams work better.</div>
+          <div class="how-body">I've managed 15+ contractors across audio editing, video editing, design, animation, and thumbnail production, including international teams across multiple time zones. I was the single point of contact for all of them: workload allocation, project assignments, feedback loops, delivery timelines, and cross-functional handoffs. I also shifted the team from availability-based assignments to a skill-and-capacity model — matching contractors to projects based on strengths and bandwidth, which enabled better load balancing as output scaled. I built the onboarding infrastructure so new contractors could ramp quickly and independently.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK INDEX -->
+  <section id="work">
+    <div style="padding: 56px 48px 0; border-bottom: none;">
+      <div class="label">What I've Built</div>
+      <div class="work-list" style="margin-top: 32px;">
+        <a href="#work-production" class="work-item">
+          <div>
+            <div class="work-title">Production Operations: The web3 with a16z crypto Show</div>
+            <div class="work-meta">a16z crypto · 2022–2026</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+        <a href="#work-systems" class="work-item">
+          <div>
+            <div class="work-title">Systems & Process Documentation</div>
+            <div class="work-meta">a16z crypto · 2022–2026</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+        <a href="#work-compliance" class="work-item">
+          <div>
+            <div class="work-title">Compliance Review Redesign</div>
+            <div class="work-meta">a16z crypto · 2025</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+        <a href="#work-summit" class="work-item">
+          <div>
+            <div class="work-title">Founders Summit On-Site Content Capture</div>
+            <div class="work-meta">a16z crypto · 2025–2026</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+        <a href="#work-website" class="work-item">
+          <div>
+            <div class="work-title">Website Launch & Redesign Operations</div>
+            <div class="work-meta">a16z crypto · 2022–2026</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+        <a href="#work-research" class="work-item" style="border-bottom: 0.5px solid var(--border); margin-bottom: 0; padding-bottom: 22px;">
+          <div>
+            <div class="work-title">Summer Research Series — Full Production Lifecycle</div>
+            <div class="work-meta">a16z crypto · 2023–2026</div>
+          </div>
+          <div class="work-arrow">View ↓</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK DETAIL: PRODUCTION -->
+  <div id="work-production" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Production Operations: The web3 with a16z crypto Show</h3>
+    <div class="company">a16z crypto · 2022–2026</div>
+    <p>Built and owned end-to-end production operations for a high-growth venture media team producing The web3 with a16z crypto Show and associated video content.</p>
+    <div class="sub-label">What I Built</div>
+    <ul>
+      <li>Full show production pipeline from pitch to distribution, documented and maintained across 3+ years</li>
+      <li>Airtable-based content tracking system managing video assets, with automations, content calendar views, and live sync to compliance</li>
+      <li>Standard Operating Procedures for 4 recording formats: in-person (2 guests), in-person (3 guests), all-remote via Riverside.fm, and hybrid</li>
+      <li>Publishing workflow spanning YouTube, Simplecast, Spotify, and web, coordinated across internal team and contractors</li>
+      <li>Contractor onboarding documentation and assignment management system for 15+ contractors</li>
+      <li>Full audio-to-video-native transition starting in 2025: studio equipment kits, remote recording infrastructure, and new platform processes</li>
+    </ul>
+    <div class="sub-label">Guest & Stakeholder Coordination</div>
+    <p>The show brought in guests across academia, policy, and industry — including Nobel Prize-winning economists, Turing Award recipients, Fortune 500 executives, Emmy Award-winning producers, and top startup founders. I was the primary point of contact for scheduling, logistics, pre-recording prep, and on-day coordination for every guest — managing expectations, handling last-minute changes, and ensuring a seamless experience regardless of who was on the other side of the call or in the room.</p>
+    <div class="sub-label">By The Numbers</div>
+    <ul>
+      <li>Nearly tripled episode output between 2023 & 2025, with 20 episodes published to date in 2026</li>
+      <li>Developed a video clipping operation that produced 165+ video clips for social</li>
+      <li>Tracked an annual editorial budget of $500K–$700K, including projected vs. actual spend, contractor hour tracking, and per-project cost analysis</li>
+      <li>Managed content curation for external syndication partners including United Airlines and SiriusXM</li>
+    </ul>
+  </div>
+
+  <!-- WORK DETAIL: SYSTEMS -->
+  <div id="work-systems" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Systems & Process Documentation</h3>
+    <div class="company">a16z crypto · 2022–2026</div>
+    <p>Operations work lives and dies by documentation. Across 4 years, I built and maintained a library of process documentation that let the team function without relying on any one person to hold the institutional knowledge.</p>
+    <div class="sub-label">Documents Built</div>
+    <ul>
+      <li><strong style="color: var(--text); font-weight: 200;">Recordings — Standard Operating Procedures:</strong> 4-format SOP with equipment specs, crew requirements, complete production setup logistics, and troubleshooting notes</li>
+      <li><strong style="color: var(--text); font-weight: 200;">Show Production Process:</strong> Full-cycle process documentation from pitch phase through publishing and distribution</li>
+      <li><strong style="color: var(--text); font-weight: 200;">Compliance & Legal Review Workflow:</strong> End-to-end process for editorial compliance submissions, built alongside the Airtable system redesign</li>
+      <li><strong style="color: var(--text); font-weight: 200;">Post-Production Workflow:</strong> Step-by-step documentation from raw file receipt through final export and multi-platform publishing</li>
+      <li><strong style="color: var(--text); font-weight: 200;">Contractor Onboarding & Assignment System:</strong> Documentation and process for onboarding new contractors, assigning work, tracking hours, and managing delivery timelines</li>
+      <li><strong style="color: var(--text); font-weight: 200;">Release Form & Disclosure Process:</strong> End-to-end tracking of release forms and disclosures across podcasts, videos, and event recordings</li>
+    </ul>
+    <p style="margin-top: 20px; font-style: italic;">Available to review on request.</p>
+  </div>
+
+  <!-- WORK DETAIL: COMPLIANCE -->
+  <div id="work-compliance" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Compliance Review Redesign</h3>
+    <div class="company">a16z crypto · 2025</div>
+    <p>The compliance editorial review process was broken: requests scattered across Slack and email, unclear ownership, lost threads, and content being reviewed overnight or on weekends. I rebuilt it from scratch.</p>
+    <div class="sub-label">What I Built</div>
+    <ul>
+      <li>Centralized compliance review workflow in Airtable with automated intake, status tracking, structured email notifications, and live sync to the Compliance team's separate master tracker</li>
+      <li>Email automations that kept all feedback and decisions within a single thread, eliminating scattered comms and reducing friction for the legal team</li>
+      <li>A system complex enough to be robust, but simple enough that every stakeholder could use it day-to-day without training. The best part: no one noticed when I turned it on.</li>
+    </ul>
+    <div class="sub-label">The Result</div>
+    <ul>
+      <li><span class="result-stat">63% reduction in review turnaround time</span> — from an average of 23 hours to 8.5 hours per review cycle</li>
+      <li>Fewer last-minute review requests and status-chasing loops</li>
+      <li>Editorial and compliance/legal teams operating from the same source of truth for the first time</li>
+    </ul>
+  </div>
+
+  <!-- WORK DETAIL: SUMMIT -->
+  <div id="work-summit" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Founders Summit On-Site Content Capture</h3>
+    <div class="company">a16z crypto · 2025–2026</div>
+    <p>Designed and executed on-site content capture for a major industry summit, managing studio setup, run of show, gear logistics, crew coordination, and stakeholder management to produce 22 recordings over 2 days.</p>
+    <div class="sub-label">The Scope</div>
+    <ul>
+      <li>Owned the end-to-end on-site recording operation — aligning logistics, approvals, scheduling, and run of show to execute 22 interviews over two days in support of strategic content growth</li>
+      <li>The environment was high-stakes and tightly scheduled, with limited margin for error across host availability, crew coordination, equipment preparation, and stakeholder management — while still delivering a first-class, white-glove experience consistent with the standards of the event</li>
+      <li>Managed real-time execution, removed friction before it became a problem, and kept transitions quick so the room stayed on schedule and quality remained consistent across all 22 recordings</li>
+      <li>Simultaneously drove post-production across multiple time zones with multiple contractors to bring the 2025 State of Crypto Report podcast episode across the finish line and publish on time</li>
+    </ul>
+    <div class="sub-label">The Result</div>
+    <ul>
+      <li>22 recordings that became a deep content library, actively drawn from for long-form interview releases, an ongoing clip series, and strategic content tied to portfolio company announcements</li>
+      <li>A repeatable on-site production workflow ready to deploy for future events</li>
+    </ul>
+  </div>
+
+  <!-- WORK DETAIL: WEBSITE -->
+  <div id="work-website" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Website Launch & Redesign Operations</h3>
+    <div class="company">a16z crypto · 2022–2026</div>
+    <p>Supported three major website launch and redesign initiatives as the ops lead for content, managing project tracking, vendor coordination, asset handoffs, QA, trouble tickets, post-launch issue resolution, and new domain request workflows — coordinating across external web design teams, marketing, IT, and legal partners.</p>
+  </div>
+
+  <!-- WORK DETAIL: RESEARCH -->
+  <div id="work-research" class="work-detail">
+    <div class="label">Selected Work</div>
+    <h3>Summer Research Series — Full Production Lifecycle</h3>
+    <div class="company">a16z crypto · 2023–2026</div>
+    <p>Owned the complete production lifecycle for the annual Summer Research Series cohorts across 2023, 2024, and 2025, and managed all initial production planning for 2026 — from on-site recording planning and equipment placement through post-production, compliance and legal coordination, release forms, thumbnail iterations, metadata, show descriptions, and publishing schedule.</p>
+    <div class="sub-label">What I Built</div>
+    <ul>
+      <li>A clear operating structure across stakeholders, videographers, and reviewers so each video had consistent checkpoints and minimal rework</li>
+      <li>A "no surprises" pipeline that let the editorial team focus on their priorities rather than getting pulled into unnecessary review cycles and follow-ups</li>
+    </ul>
+  </div>
+
+  <!-- SKILLS & TOOLS -->
+  <section id="skills" class="border-b">
+    <div class="label">Skills & Tools</div>
+    <div class="skills-col-label">What I Know</div>
+    <div class="skills-list">Program Management · Workflow Design & Automation · AI-Assisted Operations · Budget Tracking & Reporting · Vendor & Contractor Management · Cross-Functional Leadership · Stakeholder Alignment · Editorial Planning & Roadmapping · Process Standardization · Systems Implementation · Compliance Workflow Design · Content Strategy · Change Management · SOPs & Documentation · Multi-Format Media Production · On-Site Event Production</div>
+    <div class="skills-col-label">What I Use</div>
+    <div class="skills-grid">
+      <div>
+        <div class="skills-col-label" style="color: var(--subtle); margin-top: 0;">Project & Operations</div>
+        <div class="skills-list">Airtable & Airtable Automations · Asana · Notion · Buildstack · Workday</div>
+        <div class="skills-col-label" style="color: var(--subtle);">Content & Media</div>
+        <div class="skills-list">Descript · Riverside.fm · Simplecast · Spotify for Creators · YouTube Studio · Frame.io · Loom</div>
+        <div class="skills-col-label" style="color: var(--subtle);">Automation & AI</div>
+        <div class="skills-list">ChatGPT · Claude · WhisperFlow · Slack Workflows · Zapier</div>
+      </div>
+      <div>
+        <div class="skills-col-label" style="color: var(--subtle); margin-top: 0;">Design & Review</div>
+        <div class="skills-list">DocuSign · Ironclad · Figma</div>
+        <div class="skills-col-label" style="color: var(--subtle);">Productivity & Comms</div>
+        <div class="skills-list">Google Workspace · Microsoft Suite · Slack · Box · Dropbox · WordPress · Calendly · Zoom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="label">About</div>
+    <p style="margin-top: 20px;">I'm an operations architect who found her home in media and content.</p>
+    <p>Every role I've held over the past decade came with a blank org chart and no playbook. The positions hadn't fully existed when I walked in. I've never inherited workflows. I build them.</p>
+    <p>My instinct is always to ask: <em>what system would make this work better?</em> Whether that's a tracking database, a new contractor workflow, an SOP to work out repeated kinks in the system, or a compliance process that cuts review time by 63% — I build things that last and that the whole team can actually use.</p>
+    <p>I'm looking for roles in content operations, production management, program management, or project management where I can do what I've always done: walk into a blank page, build the infrastructure that makes a team work better, and leave behind an operation that's stronger than anything that existed before.</p>
+    <div class="open-to">
+      <span>Open to:</span> Full-time · Contract · Remote · Hybrid · In-person (California / PT)
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="border-b">
+    <div class="label">Testimonials</div>
+    <div class="testimonial-carousel">
+      <div class="testimonial-slide active">
+        <div class="testimonial-quote">"She's basically the CEO of the podcast."</div>
+        <div class="testimonial-attr">Show Host, web3 with a16z crypto · a16z crypto</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">"Without her coordinating literally every aspect of it, including all of the prep work and scheduling and everything done on the fly while staying totally cool as people showed up late in a very, very tight schedule — we wouldn't have been able to achieve the wealth of content we now have."</div>
+        <div class="testimonial-attr">Show Host, web3 with a16z crypto · a16z crypto</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">"Her superpower is doing literally everything she can to support us, staying organized, proactively filling gaps and making things happen, and she crushes it."</div>
+        <div class="testimonial-attr">Steph Zinn, Growth Editor · a16z crypto</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">"She keeps everything production-related chugging along — cross-posting episodes across venues, notifying guests and their teams about publication timing, managing the flow of upcoming releases and all of the other parts attendant to that."</div>
+        <div class="testimonial-attr">Features Editor and Head of Special Projects · a16z crypto</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">"This was a major unlock, she has cultivated herself as part of editorial — she weighs in on everything with fresh eyes and we benefit from that."</div>
+        <div class="testimonial-attr">Features Editor and Head of Special Projects · a16z crypto</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">"You're a multiplier for us."</div>
+        <div class="testimonial-attr">Editor-in-Chief · a16z crypto</div>
+      </div>
+    </div>
+    <div class="testimonial-dots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+      <button class="dot" onclick="goToSlide(4)"></button>
+      <button class="dot" onclick="goToSlide(5)"></button>
+    </div>
+    <div class="testimonial-nav">
+      <button class="t-btn" onclick="prevSlide()">← Prev</button>
+      <button class="t-btn" onclick="nextSlide()">Next →</button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left">
+      <div class="label contact-label">Let's Talk</div>
+      <a href="mailto:angelicak.gehr@gmail.com" class="email">angelicak.gehr@gmail.com</a>
+      <a href="https://linkedin.com/in/angelicagehr" target="_blank" class="linkedin">LinkedIn →</a>
+      <a href="tel:5109278008" style="display: block; margin-top: 14px; font-size: 11px; font-weight: 200; letter-spacing: 0.12em; color: var(--muted); text-decoration: none;">(510) 927-8008</a>
+    </div>
+    <div class="availability">
+      <span>Available for</span>
+      Full-time · Contract · Remote · Hybrid · In-Person (California / PT)
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Angelica Gehr · 2026</p>
+    <p>Content & Production Operations</p>
+  </footer>
+
+  <script>
+    // Testimonial carousel
+    let current = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots   = document.querySelectorAll('.dot');
+
+    function goToSlide(n) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function nextSlide() { goToSlide(current + 1); }
+    function prevSlide() { goToSlide(current - 1); }
+
+    // Auto-advance testimonials every 6 seconds
+    setInterval(nextSlide, 6000);
+  </script>
+</body>
+</html>
